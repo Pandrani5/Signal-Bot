@@ -1,0 +1,19 @@
+name: Signal Bot
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Yeh har 5 minute mein bot chalayega
+  workflow_dispatch:      # Isse aap button daba kar bhi run kar sakte hain
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: pip install pyTelegramBotAPI yfinance pandas_ta
+      - name: Run Bot
+        run: python main.py
